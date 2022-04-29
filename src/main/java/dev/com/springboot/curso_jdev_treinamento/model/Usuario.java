@@ -17,10 +17,19 @@ public class Usuario implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_usuario")
 	private Long id;
-	
+
 	private String nome;
-	
+
 	private int idade;
+
+	public Usuario() {
+
+	}
+
+	public Usuario(String nome, int idade) {
+		this.nome = nome;
+		this.idade = idade;
+	}
 
 	public Long getId() {
 		return id;
