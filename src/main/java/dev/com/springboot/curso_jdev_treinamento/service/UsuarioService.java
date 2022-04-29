@@ -15,4 +15,6 @@ public interface UsuarioService {
 
 	Usuario buscarUsuarioPorId(long id);
 
+	void deletarUsuario(long iduser);
+
 }
