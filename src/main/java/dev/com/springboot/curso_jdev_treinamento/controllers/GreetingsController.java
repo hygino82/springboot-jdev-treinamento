@@ -42,10 +42,18 @@ public class GreetingsController {
 	}
 
 	@GetMapping("listatodos")
-	@ResponseBody//retorna o corpo da resposta
+	@ResponseBody // retorna o corpo da resposta
 	public ResponseEntity<List<Usuario>> listaUsuario() {
 		List<Usuario> usuarios = usuarioService.listaUsuario();
 
 		return new ResponseEntity<List<Usuario>>(usuarios, HttpStatus.OK);
+	}
+
+	@GetMapping("{id}")
+	@ResponseBody
+	public ResponseEntity<Usuario> buscarUsuarioPorId(@PathVariable long id) {
+		Usuario usuario = usuarioService.buscarUsuarioPorId(id);
+
+		return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
 	}
 }

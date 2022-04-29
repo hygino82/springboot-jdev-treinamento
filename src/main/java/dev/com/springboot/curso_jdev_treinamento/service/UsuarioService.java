@@ -13,4 +13,6 @@ public interface UsuarioService {
 
 	List<Usuario> listaUsuario();
 
+	Usuario buscarUsuarioPorId(long id);
+
 }

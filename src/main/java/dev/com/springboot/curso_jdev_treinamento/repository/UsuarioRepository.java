@@ -8,4 +8,5 @@ import dev.com.springboot.curso_jdev_treinamento.model.Usuario;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	
+	public Usuario findById(long id);
 }
