@@ -1,5 +1,7 @@
 package dev.com.springboot.curso_jdev_treinamento.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public Usuario salvarUsuario(Usuario usuario) {
 		return usuarioRepository.save(usuario);
+	}
+
+	@Override
+	public List<Usuario> listaUsuario() {
+		return usuarioRepository.findAll();
 	}
 
 }
