@@ -19,7 +19,7 @@ import dev.com.springboot.curso_jdev_treinamento.model.Usuario;
 import dev.com.springboot.curso_jdev_treinamento.service.UsuarioService;
 
 @RestController
-@RequestMapping(value = "/usuario")
+@RequestMapping
 public class GreetingsController {
 	@Autowired
 	private UsuarioService usuarioService;
