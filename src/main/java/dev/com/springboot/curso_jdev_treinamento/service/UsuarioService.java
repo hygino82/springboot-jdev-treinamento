@@ -19,4 +19,5 @@ public interface UsuarioService {
 
 	Usuario atualizarUsuarioPorId(Usuario usuario);
 
+	List<Usuario> buscarUsuarioPorNome(String nome);
 }

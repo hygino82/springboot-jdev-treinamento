@@ -40,4 +40,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return usuarioRepository.saveAndFlush(usuario);
 	}
 
+	@Override
+	public List<Usuario> buscarUsuarioPorNome(String nome) {
+		List<Usuario> usuarios = usuarioRepository.findByNomeContainsIgnoreCase(nome);
+
+		return usuarios;
+	}
+
 }

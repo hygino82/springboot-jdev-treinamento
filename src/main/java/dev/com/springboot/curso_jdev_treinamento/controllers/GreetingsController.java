@@ -61,11 +61,20 @@ public class GreetingsController {
 	public ResponseEntity<?> atualizarUsuarioPorId(@RequestBody Usuario usuario) {
 
 		if (usuario.getId() == null) {
-			return new ResponseEntity<String>("Id não informado para a atualização do usuário.", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>("Id não informado para a atualização do usuário.",
+					HttpStatus.BAD_REQUEST);
 		}
 
 		Usuario user = usuarioService.atualizarUsuarioPorId(usuario);
 
 		return new ResponseEntity<Usuario>(user, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "nome")
+	@ResponseBody
+	public ResponseEntity<List<Usuario>> buscarUsuarioPorNome(@RequestParam(name = "nome") String nome) {
+		List<Usuario> usuarios = usuarioService.buscarUsuarioPorNome(nome.trim());
+
+		return new ResponseEntity<List<Usuario>>(usuarios, HttpStatus.OK);
 	}
 }
