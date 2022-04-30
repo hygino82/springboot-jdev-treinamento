@@ -17,4 +17,6 @@ public interface UsuarioService {
 
 	void deletarUsuario(long iduser);
 
+	Usuario atualizarUsuarioPorId(Usuario usuario);
+
 }

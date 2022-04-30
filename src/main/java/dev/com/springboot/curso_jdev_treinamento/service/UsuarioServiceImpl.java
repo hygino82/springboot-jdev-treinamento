@@ -32,7 +32,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public void deletarUsuario(long iduser) {
 		Usuario usuario = usuarioRepository.findById(iduser);
-		usuarioRepository.delete(usuario);		
+		usuarioRepository.delete(usuario);
+	}
+
+	@Override
+	public Usuario atualizarUsuarioPorId(Usuario usuario) {
+		return usuarioRepository.saveAndFlush(usuario);
 	}
 
 }

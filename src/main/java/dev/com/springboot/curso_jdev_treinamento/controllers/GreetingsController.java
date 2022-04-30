@@ -7,8 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,9 +40,9 @@ public class GreetingsController {
 		return new ResponseEntity<List<Usuario>>(usuarios, HttpStatus.OK);
 	}
 
-	@GetMapping(value = "{id}")
+	@GetMapping(value = "buscarporid")
 	@ResponseBody
-	public ResponseEntity<Usuario> buscarUsuarioPorId(@PathVariable long id) {
+	public ResponseEntity<Usuario> buscarUsuarioPorId(@RequestParam(name = "id") Long id) {
 		Usuario usuario = usuarioService.buscarUsuarioPorId(id);
 
 		return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
@@ -56,9 +56,16 @@ public class GreetingsController {
 		return new ResponseEntity<String>("Usuário deletado com sucesso", HttpStatus.OK);
 	}
 
-//	@PutMapping(value = "{id}")
-//	@ResponseBody
-//	public ResponseEntity<Usuario> atualizarUsuarioPorId(@PathVariable long id,@RequestBody Usuario usuario){
-//		
-//	}
+	@PutMapping(value = "atualizar")
+	@ResponseBody
+	public ResponseEntity<?> atualizarUsuarioPorId(@RequestBody Usuario usuario) {
+
+		if (usuario.getId() == null) {
+			return new ResponseEntity<String>("Id não informado para a atualização do usuário.", HttpStatus.BAD_REQUEST);
+		}
+
+		Usuario user = usuarioService.atualizarUsuarioPorId(usuario);
+
+		return new ResponseEntity<Usuario>(user, HttpStatus.OK);
+	}
 }
