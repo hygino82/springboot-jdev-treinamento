@@ -42,8 +42,13 @@ public class GreetingsController {
 
 	@GetMapping(value = "buscarporid")
 	@ResponseBody
-	public ResponseEntity<Usuario> buscarUsuarioPorId(@RequestParam(name = "id") Long id) {
+	public ResponseEntity<?> buscarUsuarioPorId(@RequestParam(name = "id") Long id) {
 		Usuario usuario = usuarioService.buscarUsuarioPorId(id);
+
+		if (usuario == null) {
+			return new ResponseEntity<String>("O usuário com id " + id + " não consta no cadastro",
+					HttpStatus.BAD_REQUEST);
+		}
 
 		return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
 	}
@@ -51,6 +56,12 @@ public class GreetingsController {
 	@DeleteMapping(value = "deletar")
 	@ResponseBody
 	public ResponseEntity<String> deletarUsuario(@RequestParam long iduser) {
+		Usuario user = usuarioService.buscarUsuarioPorId(iduser);
+
+		if (user == null) {
+			return new ResponseEntity<String>("O usuário não está no cadastro", HttpStatus.BAD_REQUEST);
+		}
+
 		usuarioService.deletarUsuario(iduser);
 
 		return new ResponseEntity<String>("Usuário deletado com sucesso", HttpStatus.OK);
